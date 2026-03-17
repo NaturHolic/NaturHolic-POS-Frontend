@@ -53,6 +53,7 @@ import VendorManagement from './pages/VendorManagement';
 import RouteManagement from '@/pages/RouteManagement';
 import DailySales from '@/pages/DailySales';
 import Addroute from '@/pages/Addroute';
+import ExpenseTracker from './pages/ExpenseTracker';
 import '@/styles/global.css';
 
 // ── Protected Route ───────────────────────────────────────────────────────────
@@ -81,6 +82,7 @@ function App() {
               <Route path="routes" element={<RouteManagement />} />
               <Route path="Add-route" element={<Addroute />} />
               <Route path="daily-sales" element={<DailySales />} />
+              <Route path="expenses" element={<ExpenseTracker />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

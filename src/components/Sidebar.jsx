@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Bus, Users, MapPin, LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Package, Warehouse, Truck, ShoppingCart } from 'lucide-react';
+import { Package, Warehouse, Truck, ShoppingCart,Receipt } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useSidebar } from '@/context/SidebarContext';
 
@@ -16,6 +16,7 @@ export function Sidebar() {
     // { label: 'Route Management', icon: MapPin, href: '/dashboard/routes' },
     { label: 'Vendor Management', icon: Truck, href: '/dashboard/vendors' },
     { label: 'Daily Sales', icon: ShoppingCart, href: '/dashboard/daily-sales' },
+    { label: 'Expenses', icon: Receipt, href: '/dashboard/expenses' },
   ];
 
   return (

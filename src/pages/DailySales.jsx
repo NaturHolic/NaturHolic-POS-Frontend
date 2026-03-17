@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/Header';
 import { Modal } from '@/components/Modal';
+import { FileDown } from 'lucide-react';
+import { generateSalesPDF } from '@/utils/generateSalesPDF';
 import { Plus, Search, ChevronDown, X, ChevronLeft, ChevronRight, ShoppingCart, Calendar, Edit2, Trash2 } from 'lucide-react';
 import axios from 'axios';
 
@@ -370,6 +372,18 @@ export default function DailySales() {
     }
   };
 
+  // Generate PDF report ───────────────────────────────────────────────────────────
+  const handleGeneratePDF = () => {
+    const { startDate, endDate } = getDateRange(selectedDate, activePeriod);
+    generateSalesPDF({
+      sales: filtered,         // uses currently filtered/searched sales
+      periodLabel: getPeriodLabel(),
+      startDate,
+      endDate,
+      activePeriod,
+    });
+  };
+
   // ── Derived ───────────────────────────────────────────────────────────────────
   const daysInMonth = getDaysInMonth(calendarMonth, calendarYear);
   const firstDay = getFirstDay(calendarMonth, calendarYear);
@@ -400,6 +414,23 @@ export default function DailySales() {
         <button onClick={handleOpenCreate} className="bw-button-primary">
           <Plus size={18} /><span>Register Sale</span>
         </button>
+        <button onClick={handleGeneratePDF} className="bw-button-secondary"
+          disabled={sales.length === 0}
+          title="Download PDF report for current period">
+          <FileDown size={18} />
+          <span>Generate PDF</span>
+        </button>
+        {/* <Header title="Counter Sales">
+          <button onClick={handleGeneratePDF} className="bw-button-secondary"
+            disabled={sales.length === 0}
+            title="Download PDF report for current period">
+            <FileDown size={18} />
+            <span>Generate PDF</span>
+          </button>
+          <button onClick={handleOpenCreate} className="bw-button-primary">
+            <Plus size={18} /><span>Register Sale</span>
+          </button>
+        </Header> */}
       </Header>
 
       <div className="page-content">
